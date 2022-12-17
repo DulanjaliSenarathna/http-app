@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
+import Axios from "axios";
 
 class App extends Component {
   state = {
     posts: []
   };
+
+  async componentDidMount(){
+   const {data: posts}= await Axios.get('https://jsonplaceholder.typicode.com/posts');
+   this.setState({posts});
+  }
 
   handleAdd = () => {
     console.log("Add");
