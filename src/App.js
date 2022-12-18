@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import {ToastContainer} from 'react-toastify';
 import "./App.css";
 import http from "./services/httpService";
 import config from './config.json'
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -39,7 +41,7 @@ class App extends Component {
     this.setState({posts});
 
     try{
-      await http.delete(config.apiEndPoint + '/' + post.id); //if delete + post.id and add 999 to after / => expected error =>This post has already been deleted
+      await http.delete('s'+config.apiEndPoint + '/' + post.id); //if delete + post.id and add 999 to after / => expected error =>This post has already been deleted
     //if add 's'+ to begining of config.apiEndPoint => unexpected error 
     }
     catch(err){
@@ -55,6 +57,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer/>
         <button className="btn btn-primary" onClick={this.handleAdd}>
           Add
         </button>
